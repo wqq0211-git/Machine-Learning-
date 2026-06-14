@@ -1,0 +1,52 @@
+{
+  "dataset_name": "Breast Cancer Wisconsin (Diagnostic)",
+  "dataset_source": "sklearn.datasets.load_breast_cancer",
+  "feature_names": [
+    "mean radius",
+    "mean texture",
+    "mean perimeter",
+    "mean area",
+    "mean smoothness",
+    "mean compactness",
+    "mean concavity",
+    "mean concave points",
+    "mean symmetry",
+    "mean fractal dimension",
+    "radius error",
+    "texture error",
+    "perimeter error",
+    "area error",
+    "smoothness error",
+    "compactness error",
+    "concavity error",
+    "concave points error",
+    "symmetry error",
+    "fractal dimension error",
+    "worst radius",
+    "worst texture",
+    "worst perimeter",
+    "worst area",
+    "worst smoothness",
+    "worst compactness",
+    "worst concavity",
+    "worst concave points",
+    "worst symmetry",
+    "worst fractal dimension"
+  ],
+  "target_names": [
+    "malignant",
+    "benign"
+  ],
+  "model_display_names": {
+    "logistic_regression": "Logistic Regression",
+    "random_forest": "Random Forest",
+    "svm": "SVM"
+  },
+  "model_files": {
+    "logistic_regression": "logistic_regression.joblib",
+    "random_forest": "random_forest.joblib",
+    "svm": "svm.joblib"
+  },
+  "metrics_file": "report/metrics.csv",
+  "figures_dir": "report/figures"
+}
