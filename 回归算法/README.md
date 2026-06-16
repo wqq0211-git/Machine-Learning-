@@ -4,76 +4,92 @@
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3+-orange.svg)](https://scikit-learn.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-一个基于机器学习的波士顿房价预测系统，支持多种回归算法，提供可视化界面和模型评估功能。
+基于机器学习的波士顿房价预测系统，使用 Tkinter 构建图形用户界面，支持多种回归算法的训练、评估和可视化。
 
 ## 功能特性
 
-- **多种回归算法**：线性回归、决策树回归、随机森林回归
-- **可视化界面**：基于 Tkinter 的图形用户界面
-- **模型评估**：MAE、MSE、RMSE、R² 等评估指标
-- **数据可视化**：预测对比图、残差分布图、特征重要性图
-- **模型管理**：模型训练、保存、加载功能
-- **决策树可视化**：生成决策树结构图（需要 Graphviz）
+### 核心功能
+- **数据管理**：内置 Boston Housing 数据集，支持上传自定义 CSV 文件
+- **算法选择**：线性回归、决策树回归、随机森林回归三种算法
+- **参数调优**：可调整决策树深度、随机森林树数量等超参数
+- **模型训练**：一键训练模型，实时显示评估指标
+- **模型管理**：支持保存和加载训练好的模型
+- **单条预测**：输入特征值预测房价
+
+### 可视化功能
+- **预测对比图**：真实值 vs 预测值散点图
+- **残差分布图**：残差散点图 + 直方图
+- **特征重要性图**：各特征对预测的贡献度
+- **决策树结构图**：可视化决策树模型（需安装 Graphviz）
+- **评估指标图**：MAE、MSE、RMSE、R² 指标展示
+- **算法对比图**：三种算法性能对比
 
 ## 项目结构
 
 ```
 回归算法/
-├── app.py                    # 主程序入口
-├── requirements.txt          # 依赖包列表
-├── README.md                 # 项目说明
+├── app.py                    # 主程序（Tkinter GUI）
+├── requirements.txt          # Python 依赖包
+├── README.md                 # 项目说明文档
+├── .gitignore                # Git 忽略规则
 ├── data/
-│   └── boston_housing.csv    # 波士顿房价数据集
+│   └── boston_housing.csv    # 波士顿房价数据集（506条记录）
 ├── models/                   # 预训练模型
 │   ├── Linear Regression.pkl
 │   ├── Decision Tree Regression.pkl
 │   └── Random forest regression.pkl
 ├── utils/
-│   ├── data_loader.py        # 数据加载和预处理
-│   ├── model.py              # 模型定义和训练
-│   └── visualization.py      # 数据可视化
-└── tests/                    # 单元测试
-    ├── test_data_loader.py
-    ├── test_model.py
-    ├── test_visualization.py
-    └── test_integration.py
+│   ├── __init__.py
+│   ├── data_loader.py        # 数据加载、预处理、标准化
+│   ├── model.py              # 三种回归模型定义
+│   └── visualization.py      # 数据可视化模块
+└── tests/                    # 单元测试（30个测试用例）
+    ├── __init__.py
+    ├── test_data_loader.py   # 数据加载测试
+    ├── test_model.py         # 模型测试
+    ├── test_visualization.py # 可视化测试
+    └── test_integration.py   # 集成测试
 ```
 
-## 安装
+## 环境要求
 
-### 环境要求
+- Python 3.8 或更高版本
+- Windows / macOS / Linux
 
-- Python 3.8+
-- pip
+## 安装步骤
 
-### 安装步骤
-
-1. 克隆仓库
+### 1. 克隆仓库
 
 ```bash
 git clone https://github.com/123guoch/Machine-Learning-.git
-cd Machine-Learning-/回归/回归算法
+cd Machine-Learning-/回归算法
 ```
 
-2. 创建虚拟环境（推荐）
+### 2. 创建虚拟环境（推荐）
 
 ```bash
+# Windows
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# 或
-venv\Scripts\activate  # Windows
+venv\Scripts\activate
+
+# macOS / Linux
+python -m venv venv
+source venv/bin/activate
 ```
 
-3. 安装依赖
+### 3. 安装依赖
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. 安装 Graphviz（可选，用于决策树可视化）
+### 4. 安装 Graphviz（可选）
 
-- 下载并安装 [Graphviz](https://graphviz.org/download/)
-- 将安装目录的 `bin` 文件夹添加到系统 PATH
+如需使用决策树可视化功能，需要安装 Graphviz 系统软件：
+
+1. 下载安装 [Graphviz](https://graphviz.org/download/)
+2. 将安装目录的 `bin` 文件夹添加到系统 PATH
+3. 重启应用
 
 ## 使用方法
 
@@ -83,97 +99,77 @@ pip install -r requirements.txt
 python app.py
 ```
 
-### 功能说明
+### 操作流程
 
-1. **数据管理**
-   - 点击「加载内置数据集」加载 Boston Housing 数据集
-   - 点击「上传CSV文件」加载自定义数据（需包含 MEDV 列）
+```
+加载数据 → 选择算法 → 调整参数 → 训练模型 → 查看结果 → 可视化分析
+```
 
-2. **算法选择**
-   - 选择回归算法：线性回归、决策树回归、随机森林回归
-   - 调整模型参数（决策树和随机森林支持）
+### 详细说明
 
-3. **模型训练**
-   - 点击「训练模型」开始训练
-   - 训练完成后显示评估指标
+#### 1. 数据管理
+- **加载内置数据集**：一键加载 Boston Housing 数据集
+- **上传 CSV 文件**：加载自定义数据（需包含 `MEDV` 列作为目标变量）
 
-4. **模型管理**
-   - 点击「保存模型」保存训练好的模型
-   - 点击「加载模型」加载之前保存的模型
+#### 2. 算法选择
+| 算法 | 可调参数 | 适用场景 |
+|------|----------|----------|
+| 线性回归 | 无 | 线性关系数据，快速基线模型 |
+| 决策树回归 | 最大深度、最小样本分裂数 | 非线性关系，需要可解释性 |
+| 随机森林回归 | 树的数量 | 高精度预测，减少过拟合 |
 
-5. **数据可视化**
-   - 预测对比图：展示预测值与真实值的对比
-   - 残差分布图：分析模型预测误差
-   - 特征重要性图：查看各特征对预测的影响
-   - 决策树结构：可视化决策树模型
-   - 评估指标图：展示模型评估指标
-   - 算法对比：比较不同算法的性能
+#### 3. 模型训练
+- 点击「训练模型」开始训练
+- 训练完成后自动显示评估指标：
+  - **MAE**（平均绝对误差）
+  - **MSE**（均方误差）
+  - **RMSE**（均方根误差）
+  - **R²**（决定系数）
 
-## 数据集
+#### 4. 模型管理
+- **保存模型**：将训练好的模型保存为 `.pkl` 文件
+- **加载模型**：加载之前保存的模型文件
 
-本项目使用经典的 [Boston Housing Dataset](https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html)，包含 506 个样本，13 个特征：
+#### 5. 单条预测
+- 在左侧输入 13 个特征值
+- 点击「预测房价」获取预测结果
+
+## 数据集说明
+
+本项目使用经典的 [Boston Housing Dataset](https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html)：
+
+- **样本数量**：506 条
+- **特征数量**：13 个
+- **目标变量**：MEDV（房屋中位数价格，单位：$1000）
 
 | 特征 | 描述 |
 |------|------|
 | CRIM | 城镇人均犯罪率 |
-| ZN | 占地面积超过25,000平方英尺的住宅用地比例 |
+| ZN | 占地面积超过 25,000 平方英尺的住宅用地比例 |
 | INDUS | 非零售商业用地比例 |
 | CHAS | 查尔斯河虚拟变量（1=临河，0=不临河） |
 | NOX | 一氧化氮浓度 |
 | RM | 平均房间数 |
-| AGE | 1940年前建成的自住单位比例 |
+| AGE | 1940 年前建成的自住单位比例 |
 | DIS | 到波士顿五个就业中心的加权距离 |
 | RAD | 径向公路可达性指数 |
-| TAX | 每10,000美元的全额物业税率 |
+| TAX | 每 $10,000 的全额物业税率 |
 | PTRATIO | 城镇师生比例 |
-| B | 1000(Bk - 0.63)²，其中 Bk 是城镇黑人比例 |
+| B | 1000(Bk - 0.63)²，Bk 为城镇黑人比例 |
 | LSTAT | 低收入人口比例 |
-| MEDV | 自住房屋的中位数价值（目标变量，单位：$1000） |
+| MEDV | 自住房屋中位数价值（目标变量） |
 
-## 测试
-
-运行所有测试：
-
-```bash
-python -m pytest tests/ -v
-```
-
-运行特定测试：
-
-```bash
-python -m pytest tests/test_model.py -v
 ```
 
 ## 技术栈
 
-- **Python 3.8+**
-- **scikit-learn**：机器学习算法
-- **pandas**：数据处理
-- **numpy**：数值计算
-- **matplotlib**：数据可视化
-- **tkinter**：图形用户界面
-- **graphviz**：决策树可视化
-
-## 贡献指南
-
-欢迎贡献！请遵循以下步骤：
-
-1. Fork 本仓库
-2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 创建一个 Pull Request
-
-## 许可证
-
-本项目使用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
-
-## 致谢
-
-- [Boston Housing Dataset](https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html)
-- [scikit-learn](https://scikit-learn.org/)
-- [Matplotlib](https://matplotlib.org/)
-
-## 联系方式
-
-项目链接：[https://github.com/123guoch/Machine-Learning-](https://github.com/123guoch/Machine-Learning-)
+| 技术 | 用途 |
+|------|------|
+| Python 3.8+ | 编程语言 |
+| scikit-learn | 机器学习算法（线性回归、决策树、随机森林） |
+| pandas | 数据处理和分析 |
+| numpy | 数值计算 |
+| matplotlib | 数据可视化 |
+| tkinter | 图形用户界面 |
+| graphviz | 决策树结构可视化（可选） |
+| pytest | 单元测试框架 |
