@@ -1,0 +1,14 @@
+backend/data/
+backend/models/*.pth
+backend/results/figures/
+backend/**/*.log
+backend/**/__pycache__/
+backend/.pytest_cache/
+backend/.venv/
+backend/venv/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+*.tmp
+*.log
+

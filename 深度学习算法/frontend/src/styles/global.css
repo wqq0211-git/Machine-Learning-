@@ -1,0 +1,21 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+  color: #243042;
+  background: #f5f7fb;
+}
+.page { max-width: 1280px; margin: 0 auto; padding: 20px; }
+.section-title { margin: 0 0 16px; font-size: 22px; font-weight: 700; }
+.grid { display: grid; gap: 16px; }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.panel { background: #fff; border: 1px solid #e3e8f2; border-radius: 8px; padding: 18px; }
+.muted { color: #748094; }
+.chart { width: 100%; height: 320px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+@media (max-width: 900px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .page { padding: 14px; }
+}
+
