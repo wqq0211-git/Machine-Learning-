@@ -45,7 +45,7 @@ async def predict_compare(file: UploadFile = File(...)) -> dict:
 @router.post("/predict/batch")
 async def predict_batch(files: list[UploadFile] = File(...), model_name: str = Form(...)) -> dict:
     if len(files) > MAX_BATCH_FILES:
-        raise HTTPException(status_code=400, detail="批量预测最多支持 20 张图片")
+        raise HTTPException(status_code=400, detail=f"批量预测最多支持 {MAX_BATCH_FILES} 张图片")
     if model_name not in {"cnn", "resnet18", "both"}:
         raise HTTPException(status_code=400, detail="model_name 仅支持 cnn、resnet18 或 both")
     target_models = ["cnn", "resnet18"] if model_name == "both" else [model_name]
@@ -69,4 +69,3 @@ async def predict_batch(files: list[UploadFile] = File(...), model_name: str = F
             failed_count += 1
         rows.append(row)
     return ok({"success_count": success_count, "failed_count": failed_count, "items": rows})
-

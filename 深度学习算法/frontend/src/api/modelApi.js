@@ -2,6 +2,7 @@ import request from './request'
 
 export const getHealth = () => request.get('/health')
 export const getModels = () => request.get('/models')
+export const getModelInfo = () => request.get('/model-info')
 export const getMetrics = () => request.get('/metrics')
 export const getTrainingHistory = () => request.get('/training-history')
 export const getDataset = () => request.get('/dataset')
@@ -27,4 +28,3 @@ export function predictBatch(files, modelName) {
   form.append('model_name', modelName)
   return request.post('/predict/batch', form)
 }
-

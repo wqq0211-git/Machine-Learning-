@@ -3,7 +3,9 @@ from __future__ import annotations
 from fastapi import APIRouter, HTTPException
 
 from app.model_manager import manager
+from app.config import MODELS_DIR
 from app.schemas import ok
+from training.utils import read_json
 
 router = APIRouter(tags=["models"])
 
@@ -39,7 +41,11 @@ def list_models() -> dict:
     return ok(data)
 
 
+@router.get("/model-info")
+def model_info() -> dict:
+    return ok(read_json(MODELS_DIR / "model_info.json", {"cnn": None, "resnet18": None, "status": "not_trained"}))
+
+
 def validate_model_name(model_name: str) -> None:
     if model_name not in MODEL_META:
         raise HTTPException(status_code=400, detail="model_name 仅支持 cnn 或 resnet18")
-

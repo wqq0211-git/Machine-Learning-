@@ -14,9 +14,8 @@
 - 数据集：CIFAR-10
 - 操作系统：Windows
 
-## 1. 项目功能
+## 1. 项目功能自动下载并读取 CIFAR-10 数据集
 
-- 自动下载并读取 CIFAR-10 数据集
 - CNN 与 ResNet-18 两种模型训练
 - 训练集、验证集、测试集划分
 - 训练历史 JSON 保存
@@ -301,6 +300,42 @@ docs/接口文档.md
 - 十分类概率图
 - 训练指标和混淆矩阵展示
 
+### 12.1 首页
+
+首页展示系统总览，包括项目标题、数据集样本数、类别数、模型数量、模型加载状态、实验流程和当前评估指标。首页采用 AI 实验舱风格，用于课堂演示时快速说明系统目标和整体流程。
+
+![首页完整截图](docs/images/frontend-home-full.png)
+
+### 12.2 单张图像识别
+
+单图识别页面支持拖拽或点击上传 JPG、JPEG、PNG 图片。用户可以选择 CNN、ResNet-18 或双模型对比模式，系统会返回预测类别、置信度、Top-3 类别和十分类概率图。
+
+![单张图像识别完整截图](docs/images/frontend-predict-full.png)
+
+### 12.3 批量预测
+
+批量预测页面支持多图上传，也支持选择整个文件夹上传。页面可选择 CNN、ResNet-18 或双模型模式，预测结果会以表格展示，并支持只查看不一致结果、按置信度排序和导出 CSV。
+
+![批量预测完整截图](docs/images/frontend-batch-predict-full.png)
+
+### 12.4 模型对比
+
+模型对比页面展示训练完成后的真实评测指标，包括 Accuracy、Macro Precision、Macro Recall、Macro F1、Macro AUC、参数量、平均推理时间和测试样本数。同时展示训练信息、核心指标柱状图、训练曲线和混淆矩阵。
+
+![模型对比完整截图](docs/images/frontend-compare-full.png)
+
+### 12.5 数据集分析
+
+数据集分析页面展示 CIFAR-10 数据集说明，包括样本数量、训练集/测试集规模、图片尺寸、通道数、十个类别的中英文名称，以及 CNN 和 ResNet-18 不同预处理方式。
+
+![数据集分析完整截图](docs/images/frontend-dataset-full.png)
+
+### 12.6 项目说明
+
+项目说明页面介绍实验目的、CNN 算法、ResNet-18 算法、残差连接、迁移学习、前后端架构、模型推理流程、运行环境和启动方式。
+
+![项目说明完整截图](docs/images/frontend-about-full.png)
+
 ## 13. 测试与构建
 
 后端编译检查：
@@ -440,4 +475,3 @@ python -m training.train --model resnet18 --pretrained --device cuda --batch-siz
 - `frontend/node_modules/`
 - `frontend/dist/`
 - `.venv/`
-

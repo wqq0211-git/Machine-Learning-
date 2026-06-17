@@ -27,7 +27,6 @@ CIFAR10_CLASSES: Final[list[dict[str, str | int]]] = [
 ]
 
 MAX_IMAGE_BYTES: Final[int] = 5 * 1024 * 1024
-MAX_BATCH_FILES: Final[int] = 20
+MAX_BATCH_FILES: Final[int] = 200
 ALLOWED_EXTENSIONS: Final[set[str]] = {".jpg", ".jpeg", ".png"}
 ALLOWED_MIME_TYPES: Final[set[str]] = {"image/jpeg", "image/png"}
-
